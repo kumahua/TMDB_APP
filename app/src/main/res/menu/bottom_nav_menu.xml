@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/miPopular"
+        android:title="Popular"
+        android:icon="@drawable/ic_popular" />
+
+    <item
+        android:id="@+id/miTopRated"
+        android:title="TopRated"
+        android:icon="@drawable/ic_toprated" />
+
+    <item
+        android:id="@+id/miUpComing"
+        android:title="UpComing"
+        android:icon="@drawable/ic_upcoming" />
+</menu>
