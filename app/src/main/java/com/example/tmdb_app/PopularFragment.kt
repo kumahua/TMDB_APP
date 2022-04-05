@@ -29,7 +29,7 @@ class PopularFragment : Fragment(R.layout.fragment_popular) {
         binding = FragmentPopularBinding.inflate(inflater, container, false)
 
         popularMoviesLayoutMgr =
-            LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+            LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
         //LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
         popularMoviesPage = 1
         popularMovies = binding.popularMovies
@@ -71,7 +71,7 @@ class PopularFragment : Fragment(R.layout.fragment_popular) {
                 滿足條件後，我們禁用OnScrollListener，因為我們只希望此代碼運行一次。
                 接下來，我們增加popularMoviesPage，然後調用getPopularMovies()。
                 */
-                if (firstVisibleItem + visibleItemCount >= totalItemCount) {
+                if (firstVisibleItem + visibleItemCount >= totalItemCount/2) {
                     popularMovies.removeOnScrollListener(this)
                     popularMoviesPage++
                     getPopularMovies()
@@ -94,5 +94,4 @@ class PopularFragment : Fragment(R.layout.fragment_popular) {
         intent.putExtra(Constants.MOVIE_OVERVIEW, result.overview)
         startActivity(intent)
     }
-
 }

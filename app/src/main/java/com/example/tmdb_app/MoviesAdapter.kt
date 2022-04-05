@@ -17,6 +17,8 @@ class MoviesAdapter (
     inner class MovieViewHolder(binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         private val poster: ImageView = binding.itemMoviePoster
         private val movieName: TextView = binding.itemMovieName
+        private val movieGenre: TextView = binding.itemMovieGenre
+        private val movieScore: TextView = binding.itemMovieScore
 
         fun bind(movie: Result) {
             //Glide 主要用來載入圖片，支持 Jpg png gif webp，也支持從網路載入
@@ -26,6 +28,8 @@ class MoviesAdapter (
                 .into(poster)
 
             movieName.text = movie.title
+            movieGenre.text = Genre.getGenre(movie.genreIds)
+            movieScore.text = "\uD83C\uDFC5 ${movie.voteAverage.toString()}/10"
 
             itemView.setOnClickListener { onMovieClick.invoke(movie) }
         }

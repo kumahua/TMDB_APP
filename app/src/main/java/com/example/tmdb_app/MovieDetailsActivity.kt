@@ -20,7 +20,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private lateinit var backdrop: ImageView
     private lateinit var poster: ImageView
-    private lateinit var title: TextView
+    private lateinit var movieTitle: TextView
     private lateinit var rating: RatingBar
     private lateinit var releaseDate: TextView
     private lateinit var overview: TextView
@@ -31,7 +31,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         backdrop = binding.movieBackdrop
         poster = binding.moviePoster
-        title = binding.movieTitle
+        movieTitle = binding.movieTitle
         rating = binding.movieRating
         releaseDate = binding.movieReleaseDate
         overview = binding.movieOverview
@@ -42,6 +42,17 @@ class MovieDetailsActivity : AppCompatActivity() {
             populateDetails(extras)
         } else {
             finish()
+        }
+
+        setSupportActionBar(binding.toolbarMovieDetails)
+        if(supportActionBar != null) {
+            supportActionBar?.apply{
+                setDisplayHomeAsUpEnabled(true)
+                title = "Movie Details"
+            }
+        }
+        binding.toolbarMovieDetails.setNavigationOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -60,7 +71,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                 .into(poster)
         }
 
-        title.text = extras.getString(MOVIE_TITLE, "")
+        movieTitle.text = extras.getString(MOVIE_TITLE, "")
         rating.rating = extras.getFloat(MOVIE_RATING, 0F)
         releaseDate.text = extras.getString(MOVIE_RELEASE_DATE, "")
         overview.text = extras.getString(MOVIE_OVERVIEW, "")

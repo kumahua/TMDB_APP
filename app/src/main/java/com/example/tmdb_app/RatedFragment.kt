@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tmdb_app.Constants.MOVIE_BACKDROP
 import com.example.tmdb_app.Constants.MOVIE_OVERVIEW
 import com.example.tmdb_app.Constants.MOVIE_POSTER
@@ -21,7 +21,7 @@ class RatedFragment : Fragment(R.layout.fragment_rated) {
     private lateinit var ratedMovies: RecyclerView
     private lateinit var ratedMoviesAdapter: MoviesAdapter
     private lateinit var binding: FragmentRatedBinding
-    private lateinit var ratedMoviesLayoutMgr: StaggeredGridLayoutManager
+    private lateinit var ratedMoviesLayoutMgr: LinearLayoutManager
 
     private var ratedMoviesPage: Int = 1
     private var spanArray: IntArray? = null
@@ -35,15 +35,13 @@ class RatedFragment : Fragment(R.layout.fragment_rated) {
         binding = FragmentRatedBinding.inflate(inflater, container, false)
 
         ratedMoviesLayoutMgr =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         //LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
         ratedMoviesPage = 1
         ratedMovies = binding.ratedMovies
         ratedMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie)}
         ratedMovies.layoutManager = ratedMoviesLayoutMgr
         ratedMovies.adapter = ratedMoviesAdapter
-        //網格佈局行或列的個數
-        spanArray = IntArray(ratedMoviesLayoutMgr.spanCount)
 
         getRatedMovies()
 
@@ -71,7 +69,7 @@ class RatedFragment : Fragment(R.layout.fragment_rated) {
                 //當前被反覆回收的附加到RecyclerView 的子視圖的當前數量
                 val visibleItemCount = ratedMoviesLayoutMgr.childCount
                 //findFirstVisibleItemPosition 顯示畫面的第一個項目位置
-                val firstVisibleItem = ratedMoviesLayoutMgr.findFirstVisibleItemPositions(spanArray)[0]
+                val firstVisibleItem = ratedMoviesLayoutMgr.findFirstVisibleItemPosition()
 
 
                 /*

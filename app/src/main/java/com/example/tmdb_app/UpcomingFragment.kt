@@ -7,18 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tmdb_app.databinding.FragmentUpcomingBinding
 
 class UpcomingFragment : Fragment(R.layout.fragment_upcoming) {
     private lateinit var upcomingMovies: RecyclerView
     private lateinit var upcomingMoviesAdapter: MoviesAdapter
     private lateinit var binding: FragmentUpcomingBinding
-    private lateinit var upcomingMoviesLayoutMgr: StaggeredGridLayoutManager
+    private lateinit var upcomingMoviesLayoutMgr: LinearLayoutManager
 
     private var upcomingMoviesPage: Int = 1
-    private var spanArray: IntArray? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,15 +28,13 @@ class UpcomingFragment : Fragment(R.layout.fragment_upcoming) {
         binding = FragmentUpcomingBinding.inflate(inflater, container, false)
 
         upcomingMoviesLayoutMgr =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         //LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
         upcomingMoviesPage = 1
         upcomingMovies = binding.upcomingMovies
         upcomingMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie)}
         upcomingMovies.layoutManager = upcomingMoviesLayoutMgr
         upcomingMovies.adapter = upcomingMoviesAdapter
-        //網格佈局行或列的個數
-        spanArray = IntArray(upcomingMoviesLayoutMgr.spanCount)
 
         getUpcomingMovies()
 
@@ -65,7 +62,7 @@ class UpcomingFragment : Fragment(R.layout.fragment_upcoming) {
                 //當前被反覆回收的附加到RecyclerView 的子視圖的當前數量
                 val visibleItemCount = upcomingMoviesLayoutMgr.childCount
                 //findFirstVisibleItemPosition 顯示畫面的第一個項目位置
-                val firstVisibleItem = upcomingMoviesLayoutMgr.findFirstVisibleItemPositions(spanArray)[0]
+                val firstVisibleItem = upcomingMoviesLayoutMgr.findFirstVisibleItemPosition()
 
 
                 /*
@@ -73,7 +70,7 @@ class UpcomingFragment : Fragment(R.layout.fragment_upcoming) {
                 滿足條件後，我們禁用OnScrollListener，因為我們只希望此代碼運行一次。
                 接下來，我們增加popularMoviesPage，然後調用getPopularMovies()。
                 */
-                if (firstVisibleItem + visibleItemCount >= totalItemCount) {
+                if (firstVisibleItem + visibleItemCount >= totalItemCount/2) {
                     upcomingMovies.removeOnScrollListener(this)
                     upcomingMoviesPage++
                     getUpcomingMovies()
