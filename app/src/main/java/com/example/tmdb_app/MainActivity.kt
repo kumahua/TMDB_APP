@@ -34,5 +34,4 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fgPopular, fragment)
             commit()
         }
-
 }

@@ -12,6 +12,7 @@ object MoviesRepository {
 
     //object中的init區塊只會在初始化時執行並只執行一次
     init {
+        //建立 Retrofit 實例
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -21,7 +22,7 @@ object MoviesRepository {
 
     fun getPopularMovies(
         page: Int = 1,
-        //onSuccess是一個參數，它是一個高級函數，它接受List<Result>，但不返回任何值
+        //onSuccess是一個參數，也是一個高級函數，接受List<Result>，但不返回任何值
         onSuccess: (movies: List<Result>) -> Unit,
         onError: () -> Unit
     ) {
@@ -48,7 +49,6 @@ object MoviesRepository {
 
     fun getRatedMovies(
         page: Int = 1,
-        //onSuccess是一個參數，它是一個高級函數，它接受List<Result>，但不返回任何值
         onSuccess: (movies: List<Result>) -> Unit,
         onError: () -> Unit
     ) {
@@ -75,7 +75,6 @@ object MoviesRepository {
 
     fun getUpcomingMovies(
         page: Int = 1,
-        //onSuccess是一個參數，它是一個高級函數，它接受List<Result>，但不返回任何值
         onSuccess: (movies: List<Result>) -> Unit,
         onError: () -> Unit
     ) {
