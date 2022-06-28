@@ -1,5 +1,6 @@
-package com.example.tmdb_app
+package com.example.tmdb_app.Util
 
+import com.example.tmdb_app.Movie
 import retrofit2.http.GET
 import retrofit2.http.Query
 

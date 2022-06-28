@@ -1,4 +1,4 @@
-package com.example.tmdb_app
+package com.example.tmdb_app.Fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tmdb_app.*
+import com.example.tmdb_app.Util.MoviesRepository
 import com.example.tmdb_app.databinding.FragmentUpcomingBinding
 
 class UpcomingFragment : Fragment(R.layout.fragment_upcoming) {

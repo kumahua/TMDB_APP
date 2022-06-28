@@ -1,4 +1,4 @@
-package com.example.tmdb_app
+package com.example.tmdb_app.Fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,11 @@ import com.example.tmdb_app.Constants.MOVIE_POSTER
 import com.example.tmdb_app.Constants.MOVIE_RATING
 import com.example.tmdb_app.Constants.MOVIE_RELEASE_DATE
 import com.example.tmdb_app.Constants.MOVIE_TITLE
+import com.example.tmdb_app.MovieDetailsActivity
+import com.example.tmdb_app.MoviesAdapter
+import com.example.tmdb_app.R
+import com.example.tmdb_app.Result
+import com.example.tmdb_app.Util.MoviesRepository
 import com.example.tmdb_app.databinding.FragmentRatedBinding
 
 class RatedFragment : Fragment(R.layout.fragment_rated) {

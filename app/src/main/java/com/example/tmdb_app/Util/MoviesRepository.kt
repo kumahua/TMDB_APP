@@ -1,5 +1,7 @@
-package com.example.tmdb_app
+package com.example.tmdb_app.Util
 
+import com.example.tmdb_app.Movie
+import com.example.tmdb_app.Result
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

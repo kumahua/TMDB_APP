@@ -3,6 +3,9 @@ package com.example.tmdb_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.tmdb_app.Fragment.PopularFragment
+import com.example.tmdb_app.Fragment.RatedFragment
+import com.example.tmdb_app.Fragment.UpcomingFragment
 import com.example.tmdb_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

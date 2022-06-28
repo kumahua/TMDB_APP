@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.example.tmdb_app.Util.Genre
 import com.example.tmdb_app.databinding.ItemMovieBinding
 
 class MoviesAdapter (

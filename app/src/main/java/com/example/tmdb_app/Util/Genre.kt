@@ -1,4 +1,4 @@
-package com.example.tmdb_app
+package com.example.tmdb_app.Util
 
 object Genre {
     private val genreMap = mapOf<Int, String>(
